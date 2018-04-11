@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7502EAE7-A485-4AEA-9949-17731ECFE183}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryMapper.Core", "src\BinaryMapper.Core\BinaryMapper.Core.csproj", "{DBDF4F0C-B771-49FB-9F05-31BA1908A9EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{97382EDE-3799-41E4-9C94-5BD81C2ED3A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryMapper.Minidump", "src\BinaryMapper.Minidump\BinaryMapper.Minidump.csproj", "{DABDBC47-8DFD-418C-B31B-505FA88426FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{AEAD819B-1DB4-4BBD-B2C4-91C1BB65C826}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryMapper.Tester", "misc\BinaryMapper.Tester\BinaryMapper.Tester.csproj", "{E1F35017-D4EA-4587-B6E5-4825331BC5C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBDF4F0C-B771-49FB-9F05-31BA1908A9EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBDF4F0C-B771-49FB-9F05-31BA1908A9EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBDF4F0C-B771-49FB-9F05-31BA1908A9EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBDF4F0C-B771-49FB-9F05-31BA1908A9EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DABDBC47-8DFD-418C-B31B-505FA88426FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DABDBC47-8DFD-418C-B31B-505FA88426FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DABDBC47-8DFD-418C-B31B-505FA88426FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DABDBC47-8DFD-418C-B31B-505FA88426FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1F35017-D4EA-4587-B6E5-4825331BC5C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1F35017-D4EA-4587-B6E5-4825331BC5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1F35017-D4EA-4587-B6E5-4825331BC5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F35017-D4EA-4587-B6E5-4825331BC5C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DBDF4F0C-B771-49FB-9F05-31BA1908A9EA} = {7502EAE7-A485-4AEA-9949-17731ECFE183}
+		{DABDBC47-8DFD-418C-B31B-505FA88426FB} = {7502EAE7-A485-4AEA-9949-17731ECFE183}
+		{E1F35017-D4EA-4587-B6E5-4825331BC5C7} = {AEAD819B-1DB4-4BBD-B2C4-91C1BB65C826}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0348A58-5119-425C-8096-0E7063B24833}
+	EndGlobalSection
+EndGlobal
