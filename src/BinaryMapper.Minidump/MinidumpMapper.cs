@@ -65,6 +65,9 @@ namespace BinaryMapper.Minidump
                         break;
                     case MINIDUMP_STREAM_TYPE.SystemInfoStream:
                         minidump.SystemInfoStream = _streamBinaryMapper.ReadObject<MINIDUMP_SYSTEM_INFO_STREAM>(stream);
+                        stream.Position = minidump.SystemInfoStream.CSDVersionRva;
+                        var servicePackString = _streamBinaryMapper.ReadObject<MINIDUMP_STRING>(stream);
+                        minidump.SystemInfoServicePack = servicePackString.Buffer;
                         break;
                     case MINIDUMP_STREAM_TYPE.MiscInfoStream:
                         minidump.MiscInfoStream = _streamBinaryMapper.ReadObject<MINIDUMP_MISC_INFO_STREAM>(stream);

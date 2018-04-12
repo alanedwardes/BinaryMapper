@@ -27,11 +27,12 @@ namespace BinaryMapper.Structures
         public RVA CSDVersionRva;
         [Rewind]
         public USHORT Reserved1;
-        public USHORT SuiteMask;
+        public SUITE_TYPE SuiteMask;
         public USHORT Reserved2;
         public CPU_INFORMATION Cpu;
 
         public Version VersionMarshaled => new Version((int)MajorVersion, (int)MinorVersion, (int)BuildNumber);
+        public Version ProcessorRevisionMarshaled => new Version((byte)((ProcessorRevision >> 8) & 0xFF), (byte)ProcessorRevision);
     }
 
     public enum PROCESSOR_ARCHITECTURE_TYPE : USHORT
