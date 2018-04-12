@@ -15,7 +15,7 @@ before_build:
   - cmd: dotnet restore
 
 after_build:
-- dotnet pack -c Release -output Artifacts
+- dotnet pack -c Release -o Artifacts
 
 artifacts:
 - path: Artifacts\*.nupkg
