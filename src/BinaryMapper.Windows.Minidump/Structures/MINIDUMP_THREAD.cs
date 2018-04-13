@@ -2,7 +2,7 @@
 using ULONG32 = System.UInt32;
 using ULONG64 = System.UInt64;
 
-namespace BinaryMapper.Structures
+namespace BinaryMapper.Windows.Minidump.Structures
 {
     /// <summary>
     /// https://msdn.microsoft.com/en-us/library/ms680517.aspx

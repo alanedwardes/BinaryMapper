@@ -1,6 +1,6 @@
 ﻿using ULONG64 = System.UInt64;
 
-namespace BinaryMapper.Structures
+namespace BinaryMapper.Windows.Minidump.Structures
 {
     /// <summary>
     /// https://msdn.microsoft.com/en-us/library/ms680384.aspx

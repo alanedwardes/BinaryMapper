@@ -1,9 +1,9 @@
 ﻿using BinaryMapper.Core;
-using BinaryMapper.Structures;
+using BinaryMapper.Windows.Minidump.Structures;
 using System;
 using System.IO;
 
-namespace BinaryMapper.Minidump
+namespace BinaryMapper.Windows.Minidump
 {
     public class MinidumpMapper : IMinidumpMapper
     {

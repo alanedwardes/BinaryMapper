@@ -1,7 +1,7 @@
-﻿using BinaryMapper.Structures;
+﻿using BinaryMapper.Windows.Minidump.Structures;
 using System.Collections.Generic;
 
-namespace BinaryMapper.Minidump
+namespace BinaryMapper.Windows.Minidump
 {
     public class Minidump
     {

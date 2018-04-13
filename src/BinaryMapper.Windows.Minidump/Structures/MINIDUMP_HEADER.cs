@@ -4,7 +4,7 @@ using ULONG32 = System.UInt32;
 using RVA = System.UInt32;
 using ULONG64 = System.UInt64;
 
-namespace BinaryMapper.Structures
+namespace BinaryMapper.Windows.Minidump.Structures
 {
     /// <summary>
     /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms680378.aspx

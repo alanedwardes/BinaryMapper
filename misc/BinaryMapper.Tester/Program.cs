@@ -1,4 +1,4 @@
-﻿using BinaryMapper.Minidump;
+﻿using BinaryMapper.Windows.Minidump;
 using System;
 using System.IO;
 
