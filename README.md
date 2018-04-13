@@ -27,7 +27,7 @@ stream.Position = header.SomeOffset;
 var stream1 = streamBinaryMapper.ReadObject<MYFILE_STREAM_STRUCT>(stream);
 ```
 
-## BinaryMapper.Minidump [![NuGet](https://img.shields.io/nuget/v/BinaryMapper.Minidump.svg)](https://www.nuget.org/packages/BinaryMapper.Minidump/)
+## BinaryMapper.Windows.Minidump [![NuGet](https://img.shields.io/nuget/v/BinaryMapper.Windows.Minidump.svg)](https://www.nuget.org/packages/BinaryMapper.Windows.Minidump/)
 This example shows how to extract the names of the loaded modules from a memory dump stream.
 ```csharp
 var stream = File.OpenRead("minidump.dmp");
