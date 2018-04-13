@@ -1,4 +1,4 @@
-# BinaryMapper ![](https://ci.appveyor.com/api/projects/status/raisen0g2fdmc0js/branch/master?svg=true)
+# BinaryMapper [![AppVeyor](https://ci.appveyor.com/api/projects/status/raisen0g2fdmc0js/branch/master?svg=true)](https://ci.appveyor.com/project/alanedwardes/binarymapper)
 This is a simple cross-platform library to parse binary files into their respective data structures in C#. Currently the library supports reading Minidumps based on the structures published on MSDN.
 
 Spporting other file formats is a case of definining the structures and pointing the library at them.
@@ -28,7 +28,7 @@ var stream1 = streamBinaryMapper.ReadObject<MYFILE_STREAM_STRUCT>(stream);
 ```
 
 ## BinaryMapper.Minidump [![NuGet](https://img.shields.io/nuget/v/BinaryMapper.Minidump.svg)](https://www.nuget.org/packages/BinaryMapper.Minidump/)
-This example shows how to use BinaryMapper.Minidump to extract the names of the loaded modules from a memory dump stream.
+This example shows how to extract the names of the loaded modules from a memory dump stream.
 ```csharp
 var stream = File.OpenRead("minidump.dmp");
 var minidumpMapper = new MinidumpMapper();
