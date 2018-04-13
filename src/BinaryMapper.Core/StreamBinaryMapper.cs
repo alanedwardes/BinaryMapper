@@ -46,35 +46,9 @@ namespace BinaryMapper.Core
 
                 if (field.FieldType.IsPrimitive)
                 {
-                    if (field.FieldType == typeof(Byte))
-                    {
-                        stream.NextBytes(sizeof(Byte), out var array);
-                        field.SetValue(structure, array[0]);
-                    }
-                    else if (field.FieldType == typeof(Char))
-                    {
-                        stream.NextBytes(sizeof(Char), out var array);
-                        field.SetValue(structure, BitConverter.ToChar(array, 0));
-                    }
-                    else if (field.FieldType == typeof(UInt16))
-                    {
-                        stream.NextBytes(sizeof(UInt16), out var array);
-                        field.SetValue(structure, BitConverter.ToUInt16(array, 0));
-                    }
-                    else if (field.FieldType == typeof(UInt32))
-                    {
-                        stream.NextBytes(sizeof(UInt32), out var array);
-                        field.SetValue(structure, BitConverter.ToUInt32(array, 0));
-                    }
-                    else if (field.FieldType == typeof(UInt64))
-                    {
-                        stream.NextBytes(sizeof(UInt64), out var array);
-                        field.SetValue(structure, BitConverter.ToUInt64(array, 0));
-                    }
-                    else
-                    {
-                        throw new NotImplementedException($"Primitive type {field.FieldType} not implemented.");
-                    }
+                    var primitiveSize = field.FieldType.SizeOfPrimitiveType();
+                    stream.NextBytes(primitiveSize, out var array);
+                    field.SetValue(structure, array.ToPrimitiveObject(field.FieldType));
                 }
                 else if (field.FieldType == typeof(string))
                 {
