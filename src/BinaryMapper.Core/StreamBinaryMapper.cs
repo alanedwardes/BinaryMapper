@@ -29,9 +29,23 @@ namespace BinaryMapper.Core
             Array objects = Array.CreateInstance(type, length);
             for (var i = 0; i < length; i++)
             {
-                objects.SetValue(ReadObject(stream, type), i);
+                if (type.IsPrimitive)
+                {
+                    objects.SetValue(ReadValue(stream, type), i);
+                }
+                else
+                {
+                    objects.SetValue(ReadObject(stream, type), i);
+                }
             }
             return objects;
+        }
+
+        public object ReadValue(Stream stream, Type type)
+        {
+            var primitiveSize = type.SizeOfPrimitiveType();
+            stream.NextBytes(primitiveSize, out var array);
+            return array.ToPrimitiveObject(type);
         }
 
         public object ReadObject(Stream stream, Type type)
@@ -46,9 +60,7 @@ namespace BinaryMapper.Core
 
                 if (field.FieldType.IsPrimitive)
                 {
-                    var primitiveSize = field.FieldType.SizeOfPrimitiveType();
-                    stream.NextBytes(primitiveSize, out var array);
-                    field.SetValue(structure, array.ToPrimitiveObject(field.FieldType));
+                    field.SetValue(structure, ReadValue(stream, field.FieldType));
                 }
                 else if (field.FieldType == typeof(string))
                 {
