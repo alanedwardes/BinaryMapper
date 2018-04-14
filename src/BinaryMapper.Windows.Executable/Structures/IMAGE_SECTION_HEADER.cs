@@ -8,7 +8,7 @@ namespace BinaryMapper.Windows.Executable.Structures
 {
     public class IMAGE_SECTION_HEADER
     {
-        [CharacterArray(CharacterType.CHAR, 8)]
+        [CharacterArray(CharacterType.CHAR, 8, TrimNullTerminator = true)]
         public string Name;
         [Rewind]
         public DWORD PhysicalAddress;
