@@ -94,7 +94,14 @@ namespace BinaryMapper.Core
                         default:
                             throw new NotImplementedException($"Character type {characterArrayAttribute.CharacterType} not implemented.");
                     }
-                    field.SetValue(structure, encoding.GetString(buffer.Where(x => x > 0).ToArray()));
+
+                    var str = encoding.GetString(buffer);
+                    if (characterArrayAttribute.TrimNullTerminator)
+                    {
+                        str = str.TrimEnd('\0');
+                    }
+
+                    field.SetValue(structure, str);
                 }
                 else if (field.FieldType.IsArray)
                 {

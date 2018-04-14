@@ -21,5 +21,6 @@ namespace BinaryMapper.Core.Attributes
 
         public CharacterType CharacterType { get; }
         public string PropertyName { get; set; }
+        public bool TrimNullTerminator { get; set; }
     }
 }
