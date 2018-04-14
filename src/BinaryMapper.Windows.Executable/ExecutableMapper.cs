@@ -1,6 +1,8 @@
 ﻿using BinaryMapper.Core;
 using BinaryMapper.Windows.Executable.Structures;
+using System;
 using System.IO;
+using System.Linq;
 
 namespace BinaryMapper.Windows.Minidump
 {
@@ -46,6 +48,17 @@ namespace BinaryMapper.Windows.Minidump
 
             executable.ImageSectionHeaders = _streamBinaryMapper.ReadArray<IMAGE_SECTION_HEADER>(stream, executable.CoffHeader.NumberOfSections);
 
+            var resourceSectionHeader = executable.ImageSectionHeaders.SingleOrDefault(x => x.Name == ".rsrc");
+            if (resourceSectionHeader != null)
+            {
+                stream.Position = resourceSectionHeader.PointerToRawData;
+                var directory = _streamBinaryMapper.ReadObject<IMAGE_RESOURCE_DIRECTORY>(stream);
+                var entries = _streamBinaryMapper.ReadArray<IMAGE_RESOURCE_DIRECTORY_ENTRY>(stream, (uint)directory.NumberOfIdEntries + directory.NumberOfNamedEntries);
+                foreach (var entry in entries)
+                {
+                }
+            }
+            
             return executable;
         }
     }
