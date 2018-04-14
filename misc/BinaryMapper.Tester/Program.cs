@@ -8,6 +8,11 @@ namespace BinaryMapper.Tester
     {
         static void Main()
         {
+            using (var stream = File.OpenRead(@"C:\Program Files\Mozilla Firefox\firefox.exe"))
+            {
+                var executable = new ExecutableMapper().ReadExecutable(stream);
+            }
+
             using (var stream = File.OpenRead(@"C:\Users\ae\AppData\Local\Temp\c291e285b2ca196a2b634663d9113021e975085b.dmp"))
             {
                 var minidump = new MinidumpMapper().ReadMinidump(stream);

@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{2BEF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryMapper.Windows.Minidump", "src\BinaryMapper.Windows.Minidump\BinaryMapper.Windows.Minidump.csproj", "{B4A9A36E-27B1-45E4-86E7-967DAE95846C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryMapper.Windows.Executable", "src\BinaryMapper.Windows.Executable\BinaryMapper.Windows.Executable.csproj", "{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{B4A9A36E-27B1-45E4-86E7-967DAE95846C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4A9A36E-27B1-45E4-86E7-967DAE95846C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4A9A36E-27B1-45E4-86E7-967DAE95846C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{E1F35017-D4EA-4587-B6E5-4825331BC5C7} = {AEAD819B-1DB4-4BBD-B2C4-91C1BB65C826}
 		{2BEFF08A-FE3E-4E9F-8F5D-EED8B0499BF6} = {7502EAE7-A485-4AEA-9949-17731ECFE183}
 		{B4A9A36E-27B1-45E4-86E7-967DAE95846C} = {2BEFF08A-FE3E-4E9F-8F5D-EED8B0499BF6}
+		{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F} = {2BEFF08A-FE3E-4E9F-8F5D-EED8B0499BF6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0348A58-5119-425C-8096-0E7063B24833}

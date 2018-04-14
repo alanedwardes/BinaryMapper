@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.2</Version>
+    
+    <Description>Provides types to read Windows minidumps into C# structures. Defines MINIDUMP_HEADER and other types from the Windows API.</Description>
+    <Authors>alanedwardes</Authors>
+    <PackageTags>parsing;minidump;binary;reading;memorydump;debugging</PackageTags>
+    <PackageProjectUrl>https://github.com/alanedwardes/BinaryMapper</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BinaryMapper.Core\BinaryMapper.Core.csproj" />
+  </ItemGroup>
+
+</Project>
