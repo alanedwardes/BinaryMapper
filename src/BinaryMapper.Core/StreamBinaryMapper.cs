@@ -12,17 +12,11 @@ namespace BinaryMapper.Core
     {
         private BindingFlags TypeRetrievalFlags = BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty | BindingFlags.SetField;
 
-        public TStruct ReadObject<TStruct>(Stream stream)
-        {
-            var result = ReadObject(stream, typeof(TStruct));
-            return (TStruct)result;
-        }
+        public TObject ReadObject<TObject>(Stream stream) => (TObject)ReadObject(stream, typeof(TObject));
 
-        public TStruct[] ReadArray<TStruct>(Stream stream, uint length)
-        {
-            var result = ReadArray(stream, length, typeof(TStruct));
-            return result.Cast<TStruct>().ToArray();
-        }
+        public TObject[] ReadArray<TObject>(Stream stream, uint length) => ReadArray(stream, length, typeof(TObject)).Cast<TObject>().ToArray();
+
+        public TValue ReadValue<TValue>(Stream stream) => (TValue)ReadValue(stream, typeof(TValue));
 
         public Array ReadArray(Stream stream, uint length, Type type)
         {
@@ -43,9 +37,15 @@ namespace BinaryMapper.Core
 
         public object ReadValue(Stream stream, Type type)
         {
-            var primitiveSize = type.SizeOfPrimitiveType();
+            var unwrapped = type;
+            if (unwrapped.IsEnum)
+            {
+                unwrapped = Enum.GetUnderlyingType(unwrapped);
+            }
+
+            var primitiveSize = unwrapped.SizeOfPrimitiveType();
             stream.NextBytes(primitiveSize, out var array);
-            return array.ToPrimitiveObject(type);
+            return array.ToPrimitiveObject(unwrapped);
         }
 
         public object ReadObject(Stream stream, Type type)
@@ -58,7 +58,7 @@ namespace BinaryMapper.Core
             {
                 var positionBeforeReading = stream.Position;
 
-                if (field.FieldType.IsPrimitive)
+                if (field.FieldType.IsPrimitive || field.FieldType.IsEnum)
                 {
                     field.SetValue(structure, ReadValue(stream, field.FieldType));
                 }

@@ -8,5 +8,6 @@ namespace BinaryMapper.Windows.Minidump
         public IMAGE_PE_HEADER PeHeader { get; set; }
         public COFF_HEADER CoffHeader { get; set; }
         public IMAGE_OPTIONAL_HEADER OptionalHeader { get; set; }
+        public IMAGE_OPTIONAL_HEADER64 OptionalHeader64 { get; set; }
     }
 }

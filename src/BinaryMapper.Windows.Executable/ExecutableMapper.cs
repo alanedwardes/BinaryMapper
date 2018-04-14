@@ -28,7 +28,16 @@ namespace BinaryMapper.Windows.Minidump
             stream.Position = executable.DosHeader.e_lfanew;
             executable.PeHeader = _streamBinaryMapper.ReadObject<IMAGE_PE_HEADER>(stream);
             executable.CoffHeader = _streamBinaryMapper.ReadObject<COFF_HEADER>(stream);
-            executable.OptionalHeader = _streamBinaryMapper.ReadObject<IMAGE_OPTIONAL_HEADER>(stream);
+
+            var optionalHeaderMagic = _streamBinaryMapper.ReadValue<IMAGE_OPTIONAL_HEADER_MAGIC>(stream);
+            if (optionalHeaderMagic == IMAGE_OPTIONAL_HEADER_MAGIC.IMAGE_NT_OPTIONAL_HDR64_MAGIC)
+            {
+                executable.OptionalHeader64 = _streamBinaryMapper.ReadObject<IMAGE_OPTIONAL_HEADER64>(stream);
+            }
+            else
+            {
+                executable.OptionalHeader = _streamBinaryMapper.ReadObject<IMAGE_OPTIONAL_HEADER>(stream);
+            }
 
             return executable;
         }
