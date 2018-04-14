@@ -29,8 +29,13 @@ namespace BinaryMapper.Windows.Minidump
             executable.PeHeader = _streamBinaryMapper.ReadObject<IMAGE_PE_HEADER>(stream);
             executable.CoffHeader = _streamBinaryMapper.ReadObject<COFF_HEADER>(stream);
 
-            var optionalHeaderMagic = _streamBinaryMapper.ReadValue<IMAGE_OPTIONAL_HEADER_MAGIC>(stream);
-            if (optionalHeaderMagic == IMAGE_OPTIONAL_HEADER_MAGIC.IMAGE_NT_OPTIONAL_HDR64_MAGIC)
+            // Peek at the value of the image optional header's "magic"
+            // value to determine which version of the header to parse.
+            long beforeHeaderPeekPosition = stream.Position;
+            IMAGE_OPTIONAL_HDR_MAGIC headerMagic = _streamBinaryMapper.ReadValue<IMAGE_OPTIONAL_HDR_MAGIC>(stream);
+            stream.Position = beforeHeaderPeekPosition;
+
+            if (headerMagic == IMAGE_OPTIONAL_HDR_MAGIC.IMAGE_NT_OPTIONAL_HDR64_MAGIC)
             {
                 executable.OptionalHeader64 = _streamBinaryMapper.ReadObject<IMAGE_OPTIONAL_HEADER64>(stream);
             }
@@ -38,6 +43,8 @@ namespace BinaryMapper.Windows.Minidump
             {
                 executable.OptionalHeader = _streamBinaryMapper.ReadObject<IMAGE_OPTIONAL_HEADER>(stream);
             }
+
+            executable.ImageSectionHeaders = _streamBinaryMapper.ReadArray<IMAGE_SECTION_HEADER>(stream, executable.CoffHeader.NumberOfSections);
 
             return executable;
         }

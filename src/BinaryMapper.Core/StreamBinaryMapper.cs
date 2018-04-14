@@ -70,17 +70,29 @@ namespace BinaryMapper.Core
                         throw new InvalidOperationException($"Required string attribute CharacterArrayAttribute not set on property {field.Name}");
                     }
 
-                    var arrayNumberField = type.GetField(characterArrayAttribute.LengthPropertyName, TypeRetrievalFlags);
-                    var arrayLength = Convert.ToInt32(arrayNumberField.GetValue(structure));
-                    stream.NextBytes(arrayLength, out var buffer);
+                    var stringLength = characterArrayAttribute.ConstantLength;
+                    if (!string.IsNullOrWhiteSpace(characterArrayAttribute.PropertyName))
+                    {
+                        var arrayNumberField = type.GetField(characterArrayAttribute.PropertyName, TypeRetrievalFlags);
+                        if (arrayNumberField == null)
+                        {
+                            throw new InvalidOperationException($"Referenced string size property {characterArrayAttribute.PropertyName} not found");
+                        }
+                        stringLength = Convert.ToInt32(arrayNumberField.GetValue(structure));
+                    }
+
+                    stream.NextBytes(stringLength, out var buffer);
                     Encoding encoding;
                     switch (characterArrayAttribute.CharacterType)
                     {
                         case CharacterType.WCHAR:
                             encoding = Encoding.Unicode;
                             break;
+                        case CharacterType.CHAR:
+                            encoding = Encoding.UTF8;
+                            break;
                         default:
-                            throw new NotImplementedException($"Character type {CharacterType.WCHAR} not implemented.");
+                            throw new NotImplementedException($"Character type {characterArrayAttribute.CharacterType} not implemented.");
                     }
                     field.SetValue(structure, encoding.GetString(buffer));
                 }

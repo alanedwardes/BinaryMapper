@@ -4,11 +4,13 @@ using WORD = System.UInt16;
 using DWORD = System.UInt32;
 using BYTE = System.Byte;
 using ULONGLONG = System.UInt64;
+using System;
 
 namespace BinaryMapper.Windows.Executable.Structures
 {
     public class IMAGE_OPTIONAL_HEADER
     {
+        public IMAGE_OPTIONAL_HDR_MAGIC Magic;
         public BYTE MajorLinkerVersion;
         public BYTE MinorLinkerVersion;
         public DWORD SizeOfCode;
@@ -30,8 +32,8 @@ namespace BinaryMapper.Windows.Executable.Structures
         public DWORD SizeOfImage;
         public DWORD SizeOfHeaders;
         public DWORD CheckSum;
-        public IMAGE_OPTIONAL_HEADER_SUBSYSTEM Subsystem;
-        public IMAGE_OPTIONAL_HEADER_DLL_CHARACTERISTICS DllCharacteristics;
+        public IMAGE_SUBSYSTEM Subsystem;
+        public IMAGE_DLLCHARACTERISTICS DllCharacteristics;
         public DWORD SizeOfStackReserve;
         public DWORD SizeOfStackCommit;
         public DWORD SizeOfHeapReserve;
@@ -44,6 +46,7 @@ namespace BinaryMapper.Windows.Executable.Structures
 
     public class IMAGE_OPTIONAL_HEADER64
     {
+        public IMAGE_OPTIONAL_HDR_MAGIC Magic;
         public BYTE MajorLinkerVersion;
         public BYTE MinorLinkerVersion;
         public DWORD SizeOfCode;
@@ -64,8 +67,8 @@ namespace BinaryMapper.Windows.Executable.Structures
         public DWORD SizeOfImage;
         public DWORD SizeOfHeaders;
         public DWORD CheckSum;
-        public IMAGE_OPTIONAL_HEADER_SUBSYSTEM Subsystem;
-        public IMAGE_OPTIONAL_HEADER_DLL_CHARACTERISTICS DllCharacteristics;
+        public IMAGE_SUBSYSTEM Subsystem;
+        public IMAGE_DLLCHARACTERISTICS DllCharacteristics;
         public ULONGLONG SizeOfStackReserve;
         public ULONGLONG SizeOfStackCommit;
         public ULONGLONG SizeOfHeapReserve;
@@ -76,7 +79,7 @@ namespace BinaryMapper.Windows.Executable.Structures
         public IMAGE_DATA_DIRECTORY[] DataDirectory;
     }
 
-    public enum IMAGE_OPTIONAL_HEADER_MAGIC : WORD
+    public enum IMAGE_OPTIONAL_HDR_MAGIC : WORD
     {
         IMAGE_NT_OPTIONAL_HDR_MAGIC,
         IMAGE_NT_OPTIONAL_HDR32_MAGIC = 0x10b,
@@ -84,7 +87,7 @@ namespace BinaryMapper.Windows.Executable.Structures
         IMAGE_ROM_OPTIONAL_HDR_MAGIC = 0x107
     }
 
-    public enum IMAGE_OPTIONAL_HEADER_SUBSYSTEM : WORD
+    public enum IMAGE_SUBSYSTEM : WORD
     {
         IMAGE_SUBSYSTEM_UNKNOWN = 0,
         IMAGE_SUBSYSTEM_NATIVE = 1,
@@ -100,7 +103,8 @@ namespace BinaryMapper.Windows.Executable.Structures
         IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION = 16
     }
 
-    public enum IMAGE_OPTIONAL_HEADER_DLL_CHARACTERISTICS : WORD
+    [Flags]
+    public enum IMAGE_DLLCHARACTERISTICS : WORD
     {
         IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE = 0x0040,
         IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY = 0x0080,

@@ -2,6 +2,7 @@
 {
     public enum CharacterType
     {
-        WCHAR
+        WCHAR,
+        CHAR
     }
 }
