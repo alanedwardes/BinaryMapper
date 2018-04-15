@@ -12,6 +12,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\BinaryMapper.Core\BinaryMapper.Core.csproj" />
+    <ProjectReference Include="..\..\src\BinaryMapper.Windows.Executable\BinaryMapper.Windows.Executable.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Files\firefox.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
