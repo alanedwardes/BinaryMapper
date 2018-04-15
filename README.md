@@ -16,18 +16,14 @@ public class MYFILE_HEADER_STRUCT
     public MYFILE_STREAM_STRUCT[] MyStructures;
 }
 
-var streamBinaryMapper = new StreamBinaryMapper();
-
-var stream = File.OpenRead("myfile.bin");
-var header = streamBinaryMapper.ReadObject<MYFILE_HEADER_STRUCT>(stream);
-
 public class MYFILE_STREAM_STRUCT
 {
     public uint Flags;
 }
 
-stream.Position = header.SomeOffset;
-var stream1 = streamBinaryMapper.ReadObject<MYFILE_STREAM_STRUCT>(stream);
+var stream = File.OpenRead("myfile.bin");
+var streamBinaryMapper = new StreamBinaryMapper();
+var header = streamBinaryMapper.ReadObject<MYFILE_HEADER_STRUCT>(stream);
 ```
 
 ## BinaryMapper.Windows.Minidump [![NuGet](https://img.shields.io/nuget/v/BinaryMapper.Windows.Minidump.svg)](https://www.nuget.org/packages/BinaryMapper.Windows.Minidump/)
