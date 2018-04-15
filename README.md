@@ -48,16 +48,12 @@ var stream = File.OpenRead(@"executable.exe");
 var executableMapper = new ExecutableMapper();
 var executable = executableMapper.ReadExecutable(stream);
 
-// 32-bit executable
 if (executable.OptionalHeader != null)
 {
-    Console.WriteLine($"This executable is of type {executable.OptionalHeader.Magic}");
-    Console.WriteLine($"It was built for Windows version {executable.OptionalHeader.OperatingSystemVersion}");
+    Console.WriteLine($"This 32-bit executable was built for Windows version {executable.OptionalHeader.OperatingSystemVersion}");
 }
-// 64-bit executable
 else
 {
-    Console.WriteLine($"This executable is of type {executable.OptionalHeader64.Magic}");
-    Console.WriteLine($"It was built for Windows version {executable.OptionalHeader64.OperatingSystemVersion}");
+    Console.WriteLine($"This 64-bit executable was built for Windows version {executable.OptionalHeader64.OperatingSystemVersion}");
 }
 ```
