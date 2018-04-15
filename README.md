@@ -45,7 +45,7 @@ foreach (var module in minidump.Modules)
 ## BinaryMapper.Windows.Executable [![NuGet](https://img.shields.io/nuget/v/BinaryMapper.Windows.Executable.svg)](https://www.nuget.org/packages/BinaryMapper.Windows.Executable/)
 This example shows how to load an executable, find out whether it is 32 or 64 bit, and which version of Windows it targets.
 ```csharp
-var stream = File.OpenRead(@"executable.exe");
+var stream = File.OpenRead("executable.exe");
 var executableMapper = new ExecutableMapper();
 var executable = executableMapper.ReadExecutable(stream);
 
