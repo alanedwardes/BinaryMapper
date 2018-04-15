@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryMapper.Windows.Minidu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryMapper.Windows.Executable", "src\BinaryMapper.Windows.Executable\BinaryMapper.Windows.Executable.csproj", "{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryMapper.Tests", "tests\BinaryMapper.Tests\BinaryMapper.Tests.csproj", "{97A526CA-F3D1-4AB0-A65B-F41B84EC9B4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97A526CA-F3D1-4AB0-A65B-F41B84EC9B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97A526CA-F3D1-4AB0-A65B-F41B84EC9B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97A526CA-F3D1-4AB0-A65B-F41B84EC9B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97A526CA-F3D1-4AB0-A65B-F41B84EC9B4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{2BEFF08A-FE3E-4E9F-8F5D-EED8B0499BF6} = {7502EAE7-A485-4AEA-9949-17731ECFE183}
 		{B4A9A36E-27B1-45E4-86E7-967DAE95846C} = {2BEFF08A-FE3E-4E9F-8F5D-EED8B0499BF6}
 		{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F} = {2BEFF08A-FE3E-4E9F-8F5D-EED8B0499BF6}
+		{97A526CA-F3D1-4AB0-A65B-F41B84EC9B4B} = {97382EDE-3799-41E4-9C94-5BD81C2ED3A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0348A58-5119-425C-8096-0E7063B24833}

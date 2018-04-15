@@ -23,7 +23,7 @@ namespace BinaryMapper.Core
             Array objects = Array.CreateInstance(type, length);
             for (var i = 0; i < length; i++)
             {
-                if (type.IsPrimitive)
+                if (type.IsPrimitive || type.IsEnum)
                 {
                     objects.SetValue(ReadValue(stream, type), i);
                 }
@@ -37,12 +37,7 @@ namespace BinaryMapper.Core
 
         public object ReadValue(Stream stream, Type type)
         {
-            var unwrapped = type;
-            if (unwrapped.IsEnum)
-            {
-                unwrapped = Enum.GetUnderlyingType(unwrapped);
-            }
-
+            var unwrapped = type.IsEnum ? Enum.GetUnderlyingType(type) : type;
             var primitiveSize = unwrapped.SizeOfPrimitiveType();
             stream.NextBytes(primitiveSize, out var array);
             return array.ToPrimitiveObject(unwrapped);
