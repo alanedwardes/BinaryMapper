@@ -1,5 +1,6 @@
 # BinaryMapper [![AppVeyor](https://ci.appveyor.com/api/projects/status/raisen0g2fdmc0js/branch/master?svg=true)](https://ci.appveyor.com/project/alanedwardes/binarymapper)
 <img width="128" height="128" src="logo.png"/>
+
 BinaryMapper is a simple cross-platform library to parse binary files into their respective data structures in C#. It uses reflection to understand structures, and reads the data into the structure from a seekable stream.
 
 Currently the library supports reading Minidumps and executables based on the structures published on MSDN. Spporting other file formats is a case of definining the structures and pointing the library at them.
