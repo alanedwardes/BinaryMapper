@@ -1,6 +1,7 @@
 ﻿using WORD = System.UInt16;
 using LONG = System.Int32;
 using System;
+using BinaryMapper.Core;
 
 namespace BinaryMapper.Windows.Executable.Structures
 {
@@ -15,6 +16,7 @@ namespace BinaryMapper.Windows.Executable.Structures
         public COFF_CHARACTERISTICS Characteristics;
 
         public DateTimeOffset TimeDateStampMarshaled => DateTimeOffset.FromUnixTimeSeconds(TimeDateStamp);
+        public SizeSpan SizeOfOptionalHeaderMarshaled => SizeSpan.FromBytes(SizeOfOptionalHeader);
     }
 
     public enum COFF_MACHINE_TYPE : WORD

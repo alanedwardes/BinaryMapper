@@ -1,4 +1,5 @@
-﻿using BinaryMapper.Core.Attributes;
+﻿using BinaryMapper.Core;
+using BinaryMapper.Core.Attributes;
 using BinaryMapper.Core.Enums;
 using System;
 using DWORD = System.UInt32;
@@ -21,6 +22,9 @@ namespace BinaryMapper.Windows.Executable.Structures
         public WORD NumberOfRelocations;
         public WORD NumberOfLinenumbers;
         public IMAGE_SECTION_CHARACTERISTICS Characteristics;
+
+        public SizeSpan VirtualSizeMarshaled => SizeSpan.FromBytes(VirtualSize);
+        public SizeSpan SizeOfRawDataMarshaled => SizeSpan.FromBytes(SizeOfRawData);
     }
 
     [Flags]

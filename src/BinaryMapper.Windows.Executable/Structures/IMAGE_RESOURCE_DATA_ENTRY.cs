@@ -1,4 +1,5 @@
-﻿using DWORD = System.UInt32;
+﻿using BinaryMapper.Core;
+using DWORD = System.UInt32;
 
 namespace BinaryMapper.Windows.Executable.Structures
 {
@@ -8,5 +9,7 @@ namespace BinaryMapper.Windows.Executable.Structures
         public DWORD Size;
         public DWORD CodePage;
         public DWORD Reserved;
+
+        public SizeSpan SizeMarshaled => SizeSpan.FromBytes(Size);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ULONG = System.UInt32;
 using BinaryMapper.Core.Attributes;
+using BinaryMapper.Core;
 
 namespace BinaryMapper.Windows.Minidump.Structures
 {
@@ -13,5 +14,7 @@ namespace BinaryMapper.Windows.Minidump.Structures
         public ULONG NumberOfEntries;
         [ArraySize(nameof(NumberOfEntries))]
         public MINIDUMP_THREAD_INFO[] ThreadInfo;
+
+        public SizeSpan SizeOfEntryMarshaled => SizeSpan.FromBytes(SizeOfEntry);
     }
 }

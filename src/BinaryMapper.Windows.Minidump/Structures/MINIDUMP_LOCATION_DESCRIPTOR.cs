@@ -1,6 +1,7 @@
 ﻿
 using ULONG32 = System.UInt32;
 using RVA = System.UInt32;
+using BinaryMapper.Core;
 
 namespace BinaryMapper.Windows.Minidump.Structures
 {
@@ -11,5 +12,7 @@ namespace BinaryMapper.Windows.Minidump.Structures
     {
         public ULONG32 DataSize;
         public RVA Rva;
+
+        public SizeSpan DataSizeMarshaled => SizeSpan.FromBytes(DataSize);
     }
 }

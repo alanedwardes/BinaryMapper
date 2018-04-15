@@ -22,6 +22,7 @@ namespace BinaryMapper.Windows.Minidump.Structures
         public ULONG64 Reserved0;
         public ULONG64 Reserved1;
 
+        public SizeSpan SizeOfImageMarshaled => SizeSpan.FromBytes(SizeOfImage);
         public DateTimeOffset TimeDateStampMarshaled => DateTimeOffset.FromUnixTimeSeconds(TimeDateStamp);
     }
 }
