@@ -1,6 +1,5 @@
-﻿using WORD = System.UInt16;
-using DWORD = System.UInt32;
-using BinaryMapper.Core.Attributes;
+﻿using DWORD = System.UInt32;
+using WORD = System.UInt16;
 
 namespace BinaryMapper.Windows.Executable.Structures
 {

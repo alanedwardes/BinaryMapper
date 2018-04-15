@@ -1,7 +1,7 @@
-﻿using WORD = System.UInt16;
-using LONG = System.Int32;
+﻿using BinaryMapper.Core;
 using System;
-using BinaryMapper.Core;
+using LONG = System.Int32;
+using WORD = System.UInt16;
 
 namespace BinaryMapper.Windows.Executable.Structures
 {

@@ -1,5 +1,4 @@
-﻿
-using ULONG32 = System.UInt32;
+﻿using ULONG32 = System.UInt32;
 
 namespace BinaryMapper.Windows.Minidump.Structures
 {

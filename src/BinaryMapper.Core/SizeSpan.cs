@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BinaryMapper.Core
+﻿namespace BinaryMapper.Core
 {
     public struct SizeSpan
     {
@@ -28,20 +26,20 @@ namespace BinaryMapper.Core
 
             if (Kibibytes < 1024)
             {
-                return $"{Kibibytes:0} KiB ({bytes})";
+                return $"{Kibibytes:0.0} KiB ({bytes})";
             }
 
             if (Mebibytes < 1024)
             {
-                return $"{Kibibytes:0.00} MiB ({bytes})";
+                return $"{Mebibytes:0.0} MiB ({bytes})";
             }
 
             if (Gibibytes < 1024)
             {
-                return $"{Gibibytes:0.00} GiB ({bytes})";
+                return $"{Gibibytes:0.0} GiB ({bytes})";
             }
 
-            return $"{Tebibytes:0.00} TiB ({bytes})";
+            return $"{Tebibytes:0.0} TiB ({bytes})";
         }
     }
 }

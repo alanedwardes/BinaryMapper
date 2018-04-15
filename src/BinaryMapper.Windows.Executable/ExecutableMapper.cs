@@ -1,6 +1,5 @@
 ﻿using BinaryMapper.Core;
 using BinaryMapper.Windows.Executable.Structures;
-using System;
 using System.IO;
 using System.Linq;
 
@@ -48,16 +47,26 @@ namespace BinaryMapper.Windows.Minidump
 
             executable.ImageSectionHeaders = _streamBinaryMapper.ReadArray<IMAGE_SECTION_HEADER>(stream, executable.CoffHeader.NumberOfSections);
 
-            var resourceSectionHeader = executable.ImageSectionHeaders.SingleOrDefault(x => x.Name == ".rsrc");
-            if (resourceSectionHeader != null)
-            {
-                stream.Position = resourceSectionHeader.PointerToRawData;
-                var directory = _streamBinaryMapper.ReadObject<IMAGE_RESOURCE_DIRECTORY>(stream);
-                var entries = _streamBinaryMapper.ReadArray<IMAGE_RESOURCE_DIRECTORY_ENTRY>(stream, (uint)directory.NumberOfIdEntries + directory.NumberOfNamedEntries);
-                foreach (var entry in entries)
-                {
-                }
-            }
+            //var resourceSectionHeader = executable.ImageSectionHeaders.SingleOrDefault(x => x.Name == ".rsrc");
+            //if (resourceSectionHeader != null)
+            //{
+            //    stream.Position = resourceSectionHeader.PointerToRawData;
+            //    var directory = _streamBinaryMapper.ReadObject<IMAGE_RESOURCE_DIRECTORY>(stream);
+            //    var entries = _streamBinaryMapper.ReadArray<IMAGE_RESOURCE_DIRECTORY_ENTRY>(stream, (uint)directory.NumberOfIdEntries + directory.NumberOfNamedEntries);
+            //    foreach (var entry in entries)
+            //    {
+            //        if (entry.IsDirectory)
+            //        {
+            //            stream.Position = entry.DirectoryAddress;
+            //            var test = _streamBinaryMapper.ReadObject<IMAGE_RESOURCE_DIRECTORY_ENTRY>(stream);
+            //            stream.Position = test.OffsetToData;
+            //            var test2 = _streamBinaryMapper.ReadObject<IMAGE_RESOURCE_DATA_ENTRY>(stream);
+            //        }
+
+            //        stream.Position = entry.OffsetToData;
+            //        var e = _streamBinaryMapper.ReadObject<IMAGE_RESOURCE_DATA_ENTRY>(stream);
+            //    }
+            //}
             
             return executable;
         }

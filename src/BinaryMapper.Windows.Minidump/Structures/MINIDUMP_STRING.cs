@@ -1,5 +1,4 @@
-﻿
-using ULONG32 = System.UInt32;
+﻿using ULONG32 = System.UInt32;
 using BinaryMapper.Core.Attributes;
 using BinaryMapper.Core.Enums;
 

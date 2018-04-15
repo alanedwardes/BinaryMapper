@@ -1,10 +1,9 @@
-﻿using System;
-
-using ULONG32 = System.UInt32;
+﻿using BinaryMapper.Core.Attributes;
+using System;
 using RVA = System.UInt32;
-using USHORT = System.UInt16;
 using UCHAR = System.Byte;
-using BinaryMapper.Core.Attributes;
+using ULONG32 = System.UInt32;
+using USHORT = System.UInt16;
 
 namespace BinaryMapper.Windows.Minidump.Structures
 {

@@ -13,7 +13,7 @@ namespace BinaryMapper.Tester
                 var executable = new ExecutableMapper().ReadExecutable(stream);
             }
 
-            using (var stream = File.OpenRead(@"C:\Users\ae\AppData\Local\Temp\c291e285b2ca196a2b634663d9113021e975085b.dmp"))
+            using (var stream = File.OpenRead(@"C:\Users\ae\Downloads\9fbb25caf5e868e909ccc987c32ddde88ad13ca6.dmp"))
             {
                 var minidump = new MinidumpMapper().ReadMinidump(stream);
 

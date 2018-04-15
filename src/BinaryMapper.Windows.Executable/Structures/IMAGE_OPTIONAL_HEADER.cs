@@ -1,11 +1,10 @@
-﻿using BinaryMapper.Core.Attributes;
-
-using WORD = System.UInt16;
-using DWORD = System.UInt32;
-using BYTE = System.Byte;
-using ULONGLONG = System.UInt64;
+﻿using BinaryMapper.Core;
+using BinaryMapper.Core.Attributes;
 using System;
-using BinaryMapper.Core;
+using BYTE = System.Byte;
+using DWORD = System.UInt32;
+using ULONGLONG = System.UInt64;
+using WORD = System.UInt16;
 
 namespace BinaryMapper.Windows.Executable.Structures
 {
@@ -44,11 +43,20 @@ namespace BinaryMapper.Windows.Executable.Structures
         [ArraySize(nameof(NumberOfRvaAndSizes))]
         public IMAGE_DATA_DIRECTORY[] DataDirectory;
 
+        public Version LinkerVersion => new Version(MajorLinkerVersion, MinorLinkerVersion);
+        public Version OperatingSystemVersion => new Version(MajorOperatingSystemVersion, MinorOperatingSystemVersion);
+        public Version ImageVersion => new Version(MajorImageVersion, MinorImageVersion);
+        public Version SubsystemVersion => new Version(MajorSubsystemVersion, MinorSubsystemVersion);
+
         public SizeSpan SizeOfCodeMarshaled => SizeSpan.FromBytes(SizeOfCode);
         public SizeSpan SizeOfInitializedDataMarshaled => SizeSpan.FromBytes(SizeOfInitializedData);
         public SizeSpan SizeOfUninitializedDataMarshaled => SizeSpan.FromBytes(SizeOfUninitializedData);
         public SizeSpan SizeOfImageMarshaled => SizeSpan.FromBytes(SizeOfImage);
         public SizeSpan SizeOfHeadersMarshaled => SizeSpan.FromBytes(SizeOfHeaders);
+        public SizeSpan SizeOfStackReserveMarshaled => SizeSpan.FromBytes(SizeOfStackReserve);
+        public SizeSpan SizeOfStackCommitMarshaled => SizeSpan.FromBytes(SizeOfStackCommit);
+        public SizeSpan SizeOfHeapReserveMarshaled => SizeSpan.FromBytes(SizeOfHeapReserve);
+        public SizeSpan SizeOfHeapCommitMarshaled => SizeSpan.FromBytes(SizeOfHeapCommit);
     }
 
     public class IMAGE_OPTIONAL_HEADER64
@@ -85,11 +93,20 @@ namespace BinaryMapper.Windows.Executable.Structures
         [ArraySize(nameof(NumberOfRvaAndSizes))]
         public IMAGE_DATA_DIRECTORY[] DataDirectory;
 
+        public Version LinkerVersion => new Version(MajorLinkerVersion, MinorLinkerVersion);
+        public Version OperatingSystemVersion => new Version(MajorOperatingSystemVersion, MinorOperatingSystemVersion);
+        public Version ImageVersion => new Version(MajorImageVersion, MinorImageVersion);
+        public Version SubsystemVersion => new Version(MajorSubsystemVersion, MinorSubsystemVersion);
+
         public SizeSpan SizeOfCodeMarshaled => SizeSpan.FromBytes(SizeOfCode);
         public SizeSpan SizeOfInitializedDataMarshaled => SizeSpan.FromBytes(SizeOfInitializedData);
         public SizeSpan SizeOfUninitializedDataMarshaled => SizeSpan.FromBytes(SizeOfUninitializedData);
         public SizeSpan SizeOfImageMarshaled => SizeSpan.FromBytes(SizeOfImage);
         public SizeSpan SizeOfHeadersMarshaled => SizeSpan.FromBytes(SizeOfHeaders);
+        public SizeSpan SizeOfStackReserveMarshaled => SizeSpan.FromBytes(SizeOfStackReserve);
+        public SizeSpan SizeOfStackCommitMarshaled => SizeSpan.FromBytes(SizeOfStackCommit);
+        public SizeSpan SizeOfHeapReserveMarshaled => SizeSpan.FromBytes(SizeOfHeapReserve);
+        public SizeSpan SizeOfHeapCommitMarshaled => SizeSpan.FromBytes(SizeOfHeapCommit);
     }
 
     public enum IMAGE_OPTIONAL_HDR_MAGIC : WORD

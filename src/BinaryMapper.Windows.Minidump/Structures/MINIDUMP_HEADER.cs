@@ -1,7 +1,9 @@
-﻿using System;
-
-using ULONG32 = System.UInt32;
+﻿using BinaryMapper.Core;
+using BinaryMapper.Core.Attributes;
+using BinaryMapper.Core.Enums;
+using System;
 using RVA = System.UInt32;
+using ULONG32 = System.UInt32;
 using ULONG64 = System.UInt64;
 
 namespace BinaryMapper.Windows.Minidump.Structures
@@ -11,7 +13,8 @@ namespace BinaryMapper.Windows.Minidump.Structures
     /// </summary>
     public sealed class MINIDUMP_HEADER
     {
-        public ULONG32 Signature;
+        [CharacterArray(CharacterType.CHAR, 4)]
+        public string Signature;
         public ULONG32 Version;
         public ULONG32 NumberOfStreams;
         public RVA StreamDirectoryRva;
@@ -20,6 +23,7 @@ namespace BinaryMapper.Windows.Minidump.Structures
         public MINIDUMP_TYPE Flags;
 
         public DateTimeOffset TimeDateStampMarshaled => DateTimeOffset.FromUnixTimeSeconds(TimeDateStamp);
+        public ushort VersionMarshaled => Version.LowWord();
     }
 
     public enum MINIDUMP_TYPE : ULONG64

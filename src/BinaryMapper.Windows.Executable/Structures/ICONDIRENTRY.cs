@@ -1,8 +1,7 @@
-﻿
+﻿using BinaryMapper.Core;
 using BYTE = System.Byte;
-using WORD = System.UInt16;
 using DWORD = System.UInt32;
-using BinaryMapper.Core;
+using WORD = System.UInt16;
 
 namespace BinaryMapper.Windows.Executable.Structures
 {

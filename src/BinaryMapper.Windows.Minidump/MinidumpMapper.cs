@@ -1,15 +1,11 @@
 ﻿using BinaryMapper.Core;
 using BinaryMapper.Windows.Minidump.Structures;
-using System;
 using System.IO;
 
 namespace BinaryMapper.Windows.Minidump
 {
     public class MinidumpMapper : IMinidumpMapper
     {
-        private const uint MD_HEADER_SIGNATURE = 0x504d444d;
-        private const uint MD_HEADER_VERSION = 0x0000a793;
-
         private readonly IStreamBinaryMapper _streamBinaryMapper;
 
         public MinidumpMapper()
@@ -28,13 +24,6 @@ namespace BinaryMapper.Windows.Minidump
             {
                 Header = _streamBinaryMapper.ReadObject<MINIDUMP_HEADER>(stream)
             };
-
-            // Only the low-order word is MINIDUMP_VERSION
-            var lowerVersion = minidump.Header.Version & 0xffff;
-            if (minidump.Header.Signature != MD_HEADER_SIGNATURE || lowerVersion != MD_HEADER_VERSION)
-            {
-                throw new FormatException("Unknown dump signature or version.");
-            }
 
             stream.Position = minidump.Header.StreamDirectoryRva;
             var directories = _streamBinaryMapper.ReadArray<MINIDUMP_DIRECTORY>(stream, minidump.Header.NumberOfStreams);

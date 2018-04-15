@@ -1,15 +1,14 @@
-﻿using WORD = System.UInt16;
+﻿using BinaryMapper.Core.Attributes;
+using BinaryMapper.Core.Enums;
 using LONG = System.Int32;
-using BinaryMapper.Core.Attributes;
-using System.Text;
-using System;
+using WORD = System.UInt16;
 
 namespace BinaryMapper.Windows.Executable.Structures
 {
     public class IMAGE_DOS_HEADER
     {
-        [ArraySize(2)]
-        public byte[] e_magic;
+        [CharacterArray(CharacterType.CHAR, 2)]
+        public string e_magic;
         public WORD e_cblp;
         public WORD e_cp;
         public WORD e_crlc;
@@ -30,7 +29,5 @@ namespace BinaryMapper.Windows.Executable.Structures
         [ArraySize(10)]
         public WORD[] e_res2;
         public LONG e_lfanew;
-
-        public string MagicMarshaled => Encoding.ASCII.GetString(e_magic);
     }
 }
