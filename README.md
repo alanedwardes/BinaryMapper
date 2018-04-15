@@ -1,7 +1,7 @@
 # BinaryMapper [![AppVeyor](https://ci.appveyor.com/api/projects/status/raisen0g2fdmc0js/branch/master?svg=true)](https://ci.appveyor.com/project/alanedwardes/binarymapper)
-This is a simple cross-platform library to parse binary files into their respective data structures in C#. Currently the library supports reading Minidumps based on the structures published on MSDN.
+This is a simple cross-platform library to parse binary files into their respective data structures in C#.  It uses reflection to understand structures, and reads the data into the structure from a seekable stream.
 
-Spporting other file formats is a case of definining the structures and pointing the library at them.
+Currently the library supports reading Minidumps and executables based on the structures published on MSDN. Spporting other file formats is a case of definining the structures and pointing the library at them.
 
 ## BinaryMapper.Core [![NuGet](https://img.shields.io/nuget/v/BinaryMapper.Core.svg)](https://www.nuget.org/packages/BinaryMapper.Core/)
 This example shows how to load a binary stream into structures you have defined.
@@ -11,6 +11,9 @@ public class MYFILE_HEADER_STRUCT
     public uint Signature;
     public uint Version;
     public uint SomeOffset;
+    public uint NumberOfEntries;
+    [ArraySize(nameof(NumberOfEntries))]
+    public MYFILE_STREAM_STRUCT[] MyStructures;
 }
 
 var streamBinaryMapper = new StreamBinaryMapper();
