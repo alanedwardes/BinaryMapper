@@ -1,9 +1,8 @@
 ﻿using BinaryMapper.Core;
 using BinaryMapper.Windows.Executable.Structures;
 using System.IO;
-using System.Linq;
 
-namespace BinaryMapper.Windows.Minidump
+namespace BinaryMapper.Windows.Executable
 {
     public class ExecutableMapper : IExecutableMapper
     {

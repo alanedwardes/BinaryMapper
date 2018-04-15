@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace BinaryMapper.Windows.Minidump
+namespace BinaryMapper.Windows.Executable
 {
     public interface IExecutableMapper
     {

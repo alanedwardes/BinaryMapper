@@ -1,6 +1,6 @@
 ﻿using BinaryMapper.Windows.Executable.Structures;
 
-namespace BinaryMapper.Windows.Minidump
+namespace BinaryMapper.Windows.Executable
 {
     public class Executable
     {
