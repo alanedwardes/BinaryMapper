@@ -32,12 +32,32 @@ This example shows how to extract the names of the loaded modules from a memory 
 ```csharp
 var stream = File.OpenRead("minidump.dmp");
 var minidumpMapper = new MinidumpMapper();
-
 var minidump = minidumpMapper.ReadMinidump(stream);
 
 Console.WriteLine($"This minidump is of type {minidump.Header.Flags}");
 foreach (var module in minidump.Modules)
 {
     Console.WriteLine(module.Key);
+}
+```
+
+## BinaryMapper.Windows.Executable [![NuGet](https://img.shields.io/nuget/v/BinaryMapper.Windows.Executable.svg)](https://www.nuget.org/packages/BinaryMapper.Windows.Executable/)
+This example shows how to load a Windows executable and find out whether it is 32 or 64 bit, and which version of Windows it targets.
+```csharp
+var stream = File.OpenRead(@"executable.exe");
+var executableMapper = new ExecutableMapper();
+var executable = executableMapper.ReadExecutable(stream);
+
+// 32-bit executable
+if (executable.OptionalHeader != null)
+{
+    Console.WriteLine($"This executable is of type {executable.OptionalHeader.Magic}");
+    Console.WriteLine($"It was built for Windows version {executable.OptionalHeader.OperatingSystemVersion}");
+}
+// 64-bit executable
+else
+{
+    Console.WriteLine($"This executable is of type {executable.OptionalHeader64.Magic}");
+    Console.WriteLine($"It was built for Windows version {executable.OptionalHeader64.OperatingSystemVersion}");
 }
 ```
