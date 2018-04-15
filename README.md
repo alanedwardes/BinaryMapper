@@ -50,10 +50,10 @@ var executable = executableMapper.ReadExecutable(stream);
 
 if (executable.OptionalHeader != null)
 {
-    Console.WriteLine($"This 32-bit executable was built for Windows version {executable.OptionalHeader.OperatingSystemVersion}");
+    Console.WriteLine($"32-bit executable for Windows {executable.OptionalHeader.OperatingSystemVersion}");
 }
 else
 {
-    Console.WriteLine($"This 64-bit executable was built for Windows version {executable.OptionalHeader64.OperatingSystemVersion}");
+    Console.WriteLine($"64-bit executable for Windows {executable.OptionalHeader64.OperatingSystemVersion}");
 }
 ```
