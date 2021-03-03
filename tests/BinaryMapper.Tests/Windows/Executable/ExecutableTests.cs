@@ -11,7 +11,7 @@ namespace BinaryMapper.Tests.Windows.Executable
         [Fact]
         public void TestMappingExecutable()
         {
-            var stream = File.OpenRead("Files\\firefox.exe");
+            var stream = File.OpenRead(Path.Combine("Files", "firefox.exe"));
 
             var mapper = new ExecutableMapper();
 
