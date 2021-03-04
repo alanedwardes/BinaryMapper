@@ -68,5 +68,6 @@ namespace BinaryMapper.Windows.Minidump.Structures
         /// The name of the module
         /// </summary>
         public string Name { get=>_name; }
+        public string Key  { get=>_name; }
     }
 }
