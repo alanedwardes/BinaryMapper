@@ -9,7 +9,7 @@ namespace BinaryMapper.Tests.Linux.Minidump
         [Fact]
         public void TestMappingLinuxMinidump()
         {
-            var stream = File.OpenRead(@"Files\vic-engine-V3398-2020-04-28T20-51-34-473.dmp");
+            var stream = File.OpenRead(Path.Combine("Files","vic-engine-V3398-2020-04-28T20-51-34-473.dmp"));
 
             var minidump = new MinidumpMapper().ReadMinidump(stream);
             Assert.Equal("Linux 3.18.66 #1 SMP PREEMPT Tue Apr 30 15:52:13 PDT 2019 armv7l", minidump.SystemInfoServicePack);
