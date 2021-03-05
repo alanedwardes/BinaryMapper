@@ -84,6 +84,6 @@ namespace BinaryMapper.Windows.Minidump
         /// <summary>
         /// Information about the CPU
         /// </summary>
-        public IDictionary<string, string> hardwareInfo;
+        public IDictionary<string, string> HardwareInfo { get; set; } = new Dictionary<string, string>();
     }
 }
