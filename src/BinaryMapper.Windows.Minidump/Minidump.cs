@@ -56,7 +56,7 @@ namespace BinaryMapper.Windows.Minidump
         /// The environment variables -- key-value pairs -- given to the executable
         /// </summary>
         public IDictionary<string, string> EnvironmentVariables  { get; set; } = new Dictionary<string, string>();
-        public string[] LSBRelease;
+        public string[] LSBRelease { get; set; } = new string[0];
         public string[] linuxMaps;
         /// <summary>
         /// Information about the process, and the kernels management of it
