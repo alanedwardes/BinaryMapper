@@ -57,7 +57,7 @@ namespace BinaryMapper.Windows.Minidump
         /// </summary>
         public IDictionary<string, string> EnvironmentVariables  { get; set; } = new Dictionary<string, string>();
         public string[] LSBRelease { get; set; } = new string[0];
-        public string[] linuxMaps;
+        public string[] LinuxMaps { get; set; } = new string[0];
         /// <summary>
         /// Information about the process, and the kernels management of it
         /// </summary>
