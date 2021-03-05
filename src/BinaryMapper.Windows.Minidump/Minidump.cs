@@ -50,7 +50,7 @@ namespace BinaryMapper.Windows.Minidump
         /// <summary>
         /// The command line given to the executable
         /// </summary>
-        public string cmdLine;
+        public string CommandLine { get; set; }
 
         /// <summary>
         /// The environment variables -- key-value pairs -- given to the executable
