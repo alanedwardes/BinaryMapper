@@ -65,7 +65,7 @@ namespace BinaryMapper.Windows.Minidump
         /// <summary>
         /// The type of processor, number of CPUs/cores present, and their features
         /// </summary>
-        public Linux_CPUInfo CPUInfo;
+        public Linux_CPUInfo CpuInfo { get; set; }
     }
 
 
