@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>0.3.1</Version>
     
     <Description>Provides types to read Windows executables into C# structures.</Description>
@@ -9,10 +10,6 @@
     <PackageTags>parsing;minidump;binary;reading;memorydump;debugging</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/alanedwardes/BinaryMapper/master/logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/alanedwardes/BinaryMapper</PackageProjectUrl>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>G:\projects\vector\github\BinaryMapper\src\BinaryMapper.Windows.Executable\BinaryMapper.Windows.Executable.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

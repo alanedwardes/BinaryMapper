@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>0.3.1</Version>
     
     <Description>Provides types to read Windows minidumps into C# structures. Defines MINIDUMP_HEADER and other types from the Windows API.</Description>
@@ -9,10 +10,6 @@
     <PackageTags>parsing;binary;reading;executable;dos;pe</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/alanedwardes/BinaryMapper/master/logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/alanedwardes/BinaryMapper</PackageProjectUrl>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>G:\projects\vector\github\BinaryMapper\src\BinaryMapper.Windows.Minidump\BinaryMapper.Windows.Minidump.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

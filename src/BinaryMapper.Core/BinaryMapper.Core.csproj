@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Version>0.3.1</Version>
     
     <Description>Provides types to read binary streams into C# structures.</Description>
@@ -11,7 +12,4 @@
     <PackageProjectUrl>https://github.com/alanedwardes/BinaryMapper</PackageProjectUrl>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>G:\projects\vector\github\BinaryMapper\src\BinaryMapper.Core\BinaryMapper.Core.xml</DocumentationFile>
-  </PropertyGroup>
 </Project>
