@@ -10,4 +10,8 @@
     <PackageIconUrl>https://raw.githubusercontent.com/alanedwardes/BinaryMapper/master/logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/alanedwardes/BinaryMapper</PackageProjectUrl>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>G:\projects\vector\github\BinaryMapper\src\BinaryMapper.Core\BinaryMapper.Core.xml</DocumentationFile>
+  </PropertyGroup>
 </Project>

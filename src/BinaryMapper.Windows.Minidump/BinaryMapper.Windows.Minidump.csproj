@@ -11,6 +11,10 @@
     <PackageProjectUrl>https://github.com/alanedwardes/BinaryMapper</PackageProjectUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>G:\projects\vector\github\BinaryMapper\src\BinaryMapper.Windows.Minidump\BinaryMapper.Windows.Minidump.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\BinaryMapper.Core\BinaryMapper.Core.csproj" />
   </ItemGroup>
