@@ -16,7 +16,8 @@ namespace BinaryMapper.Tests.Linux.Minidump
             Assert.Equal("/anki/bin/vic-engine", minidump.CommandLine);
             Assert.Equal(4, minidump.CpuInfo.HardwareInfo.Count);
             Assert.Equal(4, minidump.CpuInfo.ProcessorInfo.Count);
-            Assert.Null(minidump.LSBRelease);
+            Assert.NotNull(minidump.LSBRelease);
+            Assert.Empty(minidump.LSBRelease);
             Assert.Null(minidump.MiscInfoStream);
             Assert.Equal(56, minidump.Modules.Count);
             Assert.Equal(8, minidump.EnvironmentVariables.Count);
