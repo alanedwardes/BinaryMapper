@@ -78,8 +78,7 @@ namespace BinaryMapper.Windows.Minidump
         /// <summary>
         /// Information about each of the processors
         /// </summary>
-        public List<IDictionary<string, string>> processorInfo =
-            new List<IDictionary<string, string>>();
+        public List<IDictionary<string, string>> ProcessorInfo { get; set; } = new List<IDictionary<string, string>>();
 
         /// <summary>
         /// Information about the CPU
