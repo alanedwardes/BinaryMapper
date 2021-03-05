@@ -13,18 +13,18 @@ namespace BinaryMapper.Tests.Linux.Minidump
 
             var minidump = new MinidumpMapper().ReadMinidump(stream);
             Assert.Equal("Linux 3.18.66 #1 SMP PREEMPT Tue Apr 30 15:52:13 PDT 2019 armv7l", minidump.SystemInfoServicePack);
-            Assert.Equal("/anki/bin/vic-engine", minidump.cmdLine);
-            Assert.Equal(4, minidump.CPUInfo.hardwareInfo.Count);
-            Assert.Equal(4, minidump.CPUInfo.processorInfo.Count);
+            Assert.Equal("/anki/bin/vic-engine", minidump.CommandLine);
+            Assert.Equal(4, minidump.CpuInfo.HardwareInfo.Count);
+            Assert.Equal(4, minidump.CpuInfo.ProcessorInfo.Count);
             Assert.Null(minidump.LSBRelease);
             Assert.Null(minidump.MiscInfoStream);
             Assert.Equal(56, minidump.Modules.Count);
-            Assert.Equal(8, minidump.environ.Count);
-            Assert.Equal(40, minidump.procStatus.Count);
-            Assert.Equal("Qualcomm Technologies, Inc APQ8009", minidump.CPUInfo.hardwareInfo["Hardware"]);
-            Assert.Equal("0000", minidump.CPUInfo.hardwareInfo["Revision"]);
-            Assert.Equal("0000000000000000", minidump.CPUInfo.hardwareInfo["Serial"]);
-            Assert.Equal("ARMv7 Processor rev 5 (v7l)", minidump.CPUInfo.hardwareInfo["Processor"]);
+            Assert.Equal(8, minidump.EnvironmentVariables.Count);
+            Assert.Equal(40, minidump.ProcessStatus.Count);
+            Assert.Equal("Qualcomm Technologies, Inc APQ8009", minidump.CpuInfo.HardwareInfo["Hardware"]);
+            Assert.Equal("0000", minidump.CpuInfo.HardwareInfo["Revision"]);
+            Assert.Equal("0000000000000000", minidump.CpuInfo.HardwareInfo["Serial"]);
+            Assert.Equal("ARMv7 Processor rev 5 (v7l)", minidump.CpuInfo.HardwareInfo["Processor"]);
         }
     }
 }

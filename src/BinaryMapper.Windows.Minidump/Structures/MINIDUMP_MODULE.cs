@@ -61,13 +61,9 @@ namespace BinaryMapper.Windows.Minidump.Structures
         public DateTimeOffset TimeDateStampMarshaled => DateTimeOffset.FromUnixTimeSeconds(TimeDateStamp);
 
         /// <summary>
-        /// The name of the Module
-        /// </summary>
-        internal string _name;
-        /// <summary>
         /// The name of the module
         /// </summary>
-        public string Name { get=>_name; }
-        public string Key  { get=>_name; }
+        public string Name { get; internal set;}
+        public string Key  { get=>Name; }
     }
 }

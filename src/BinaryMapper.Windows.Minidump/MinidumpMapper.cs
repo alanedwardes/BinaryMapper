@@ -45,7 +45,7 @@ namespace BinaryMapper.Windows.Minidump
                         foreach (var module in minidump.ModuleListStream.Modules)
                         {
                             stream.Position = module.ModuleNameRva;
-                            module._name = _streamBinaryMapper.ReadObject<MINIDUMP_STRING>(stream).Buffer;
+                            module.Name = _streamBinaryMapper.ReadObject<MINIDUMP_STRING>(stream).Buffer;
                             minidump.Modules.Add(module);
                         }
                         break;
@@ -71,24 +71,24 @@ namespace BinaryMapper.Windows.Minidump
                     // Add support for reading Chromium minidumps
                     case MINIDUMP_STREAM_TYPE.MD_LINUX_CMD_LINE:
                         var strs = MDReadStrings(stream, directory.Location.DataSize);
-                        minidump.cmdLine = strs.Length > 0 ? strs[0] : "";
+                        minidump.CommandLine = strs.Length > 0 ? strs[0] : "";
                         break;
                     case MINIDUMP_STREAM_TYPE.MD_LINUX_ENVIRON:
-                        minidump.environ = SplitIntoDictionary('=',
+                        minidump.EnvironmentVariables = SplitIntoDictionary('=',
                             MDReadStrings(stream, directory.Location.DataSize));
                         break;
                     case MINIDUMP_STREAM_TYPE.MD_LINUX_LSB_RELEASE:
                         minidump.LSBRelease = MDReadStrings(stream, directory.Location.DataSize);
                         break;
                     case MINIDUMP_STREAM_TYPE.MD_LINUX_PROC_STATUS:
-                        minidump.procStatus = SplitIntoDictionary(':',
+                        minidump.ProcessStatus = SplitIntoDictionary(':',
                             MDReadStrings(stream, directory.Location.DataSize));
                         break;
                     case MINIDUMP_STREAM_TYPE.MD_LINUX_CPU_INFO:
-                        minidump.CPUInfo = SplitProcs(MDReadStrings(stream, directory.Location.DataSize));
+                        minidump.CpuInfo = SplitProcs(MDReadStrings(stream, directory.Location.DataSize));
                         break;
                     case MINIDUMP_STREAM_TYPE.MD_LINUX_MAPS:
-                        minidump.linuxMaps = MDReadStrings(stream, directory.Location.DataSize);
+                        minidump.LinuxMaps = MDReadStrings(stream, directory.Location.DataSize);
                         break;
 
                 }
@@ -152,10 +152,10 @@ namespace BinaryMapper.Windows.Minidump
         /// </summary>
         /// <param name="list"></param>
         /// <returns>The info for each of the processors</returns>
-        static Linux_CPUInfo SplitProcs(string[] list)
+        static LinuxCpuInfo SplitProcs(string[] list)
         {
             // Create a structure to hold information for the processors
-            var ret = new Linux_CPUInfo();
+            var ret = new LinuxCpuInfo();
 
             int first = 0;
             // Scan to find the each of the processor groups of information
@@ -172,14 +172,14 @@ namespace BinaryMapper.Windows.Minidump
 
                     // store it
                     if (0 != procInfo.Count)
-                        ret.processorInfo.Add(procInfo);
+                        ret.ProcessorInfo.Add(procInfo);
                 }
                 first = idx;
             }
             if (first >= 0)
             {
                 // Convert this into a dictionary
-                ret. hardwareInfo = SplitIntoDictionary(':', list, first);
+                ret. HardwareInfo = SplitIntoDictionary(':', list, first);
             }
             return ret;
         }
