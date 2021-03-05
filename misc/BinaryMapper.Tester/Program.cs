@@ -23,7 +23,7 @@ namespace BinaryMapper.Tester
 
                 foreach (var module in minidump.Modules)
                 {
-                    Console.WriteLine(module.Key);
+                    Console.WriteLine(module.Name);
                 }
             }
 
