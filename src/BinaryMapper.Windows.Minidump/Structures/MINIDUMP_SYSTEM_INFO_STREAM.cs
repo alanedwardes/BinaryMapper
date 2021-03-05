@@ -8,25 +8,71 @@ using USHORT = System.UInt16;
 namespace BinaryMapper.Windows.Minidump.Structures
 {
     /// <summary>
-    /// https://msdn.microsoft.com/en-us/library/ms680396.aspx
+    /// Contains processor and operating system information.
     /// </summary>
+    /// <remarks>
+    /// https://docs.microsoft.com/en-us/windows/win32/api/minidumpapiset/ns-minidumpapiset-minidump_system_info
+    /// https://msdn.microsoft.com/en-us/library/ms680396.aspx
+    /// </remarks>
     public class MINIDUMP_SYSTEM_INFO_STREAM
     {
+        /// <summary>
+        /// The system's processor architecture. 
+        /// </summary>
         public PROCESSOR_ARCHITECTURE_TYPE ProcessorArchitecture;
+        /// <summary>
+        /// The system's architecture-dependent processor level.
+        /// </summary>
         public USHORT ProcessorLevel;
+        /// <summary>
+        /// The architecture-dependent processor revision.
+        /// </summary>
         public USHORT ProcessorRevision;
+        /// <summary>
+        /// This member is reserved for future use and must be zero.
+        /// </summary>
         [Rewind]
         public USHORT Reserved0;
+        /// <summary>
+        /// The number of processors in the system.
+        /// </summary>
         public UCHAR NumberOfProcessors;
+        /// <summary>
+        /// Any additional information about the system. This member can be one of the following values.
+        /// </summary>
         public PRODUCT_TYPE ProductType;
+        /// <summary>
+        /// The major version number of the operating system. 
+        /// </summary>
         public ULONG32 MajorVersion;
+        /// <summary>
+        /// The minor version number of the operating system.
+        /// </summary>
         public ULONG32 MinorVersion;
+        /// <summary>
+        /// The build number of the operating system.
+        /// </summary>
         public ULONG32 BuildNumber;
+        /// <summary>
+        /// The operating system platform.
+        /// </summary>
         public PLATFORM_ID_TYPE PlatformId;
+        /// <summary>
+        /// An RVA (from the beginning of the dump) to a MINIDUMP_STRING that describes the latest Service Pack installed on the system. If no Service Pack has been installed, the string is empty.
+        /// </summary>
         public RVA CSDVersionRva;
+        /// <summary>
+        /// This member is reserved for future use.
+        /// </summary>
         [Rewind]
         public USHORT Reserved1;
+        /// <summary>
+        /// The bit flags that identify the product suites available on the system.
+        /// </summary>
         public SUITE_TYPE SuiteMask;
+        /// <summary>
+        /// This member is reserved for future use.
+        /// </summary>
         public USHORT Reserved2;
         public CPU_INFORMATION Cpu;
 

@@ -9,17 +9,44 @@ using ULONG64 = System.UInt64;
 namespace BinaryMapper.Windows.Minidump.Structures
 {
     /// <summary>
-    /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms680378.aspx
+    /// Contains header information for the minidump file.
     /// </summary>
+    /// <remarks>
+    /// https://docs.microsoft.com/en-us/windows/win32/api/minidumpapiset/ns-minidumpapiset-minidump_header
+    /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms680378.aspx
+    /// </remarks>
     public sealed class MINIDUMP_HEADER
     {
+        /// <summary>
+        /// The signature. 
+        /// </summary>
         [CharacterArray(CharacterType.CHAR, 4)]
         public string Signature;
+        /// <summary>
+        /// The version of the minidump format. The low-order word is
+        /// <see cref="MINIDUMP_VERSION"/>. The high-order word is an internal value that is implementation specific.
+        /// </summary>
         public ULONG32 Version;
+        /// <summary>
+        /// The number of streams in the minidump directory.
+        /// </summary>
         public ULONG32 NumberOfStreams;
+        /// <summary>
+        /// The base RVA of the minidump directory. The directory is an array of
+        /// <see cref="MINIDUMP_DIRECTORY"/> structures.
+        /// </summary>
         public RVA StreamDirectoryRva;
+        /// <summary>
+        /// The checksum for the minidump file. This member can be zero.
+        /// </summary>
         public ULONG32 CheckSum;
+        /// <summary>
+        /// Time and date, in time_t format.
+        /// </summary>
         public ULONG32 TimeDateStamp;
+        /// <summary>
+        /// One or more values from the MINIDUMP_TYPE enumeration type.
+        /// </summary>
         public MINIDUMP_TYPE Flags;
 
         public DateTimeOffset TimeDateStampMarshaled => DateTimeOffset.FromUnixTimeSeconds(TimeDateStamp);

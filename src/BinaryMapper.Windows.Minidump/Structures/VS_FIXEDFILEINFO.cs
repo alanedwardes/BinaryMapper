@@ -5,8 +5,12 @@ using DWORD = System.UInt32;
 namespace BinaryMapper.Windows.Minidump.Structures
 {
     /// <summary>
-    /// https://msdn.microsoft.com/en-us/library/ms646997.aspx
+    /// Contains version information for a file. This information is language and code page independent.
     /// </summary>
+    /// <remarks>
+    /// https://docs.microsoft.com/en-us/windows/win32/api/verrsrc/ns-verrsrc-vs_fixedfileinfo
+    /// https://msdn.microsoft.com/en-us/library/ms646997.aspx
+    /// </remarks>
     public class VS_FIXEDFILEINFO
     {
         public DWORD dwSignature;
