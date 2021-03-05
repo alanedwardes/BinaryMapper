@@ -73,7 +73,7 @@ namespace BinaryMapper.Windows.Minidump
     /// This is a class to hold information about CPU as might be provided
     /// by a linux system.
     /// </summary>
-    public class Linux_CPUInfo
+    public class LinuxCpuInfo
     {
         /// <summary>
         /// Information about each of the processors
