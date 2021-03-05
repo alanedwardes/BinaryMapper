@@ -61,7 +61,7 @@ namespace BinaryMapper.Windows.Minidump
         /// <summary>
         /// Information about the process, and the kernels management of it
         /// </summary>
-        public IDictionary<string, string> procStatus;
+        public IDictionary<string, string> ProcessStatus { get; set; } = new Dictionary<string, string>();
         /// <summary>
         /// The type of processor, number of CPUs/cores present, and their features
         /// </summary>
