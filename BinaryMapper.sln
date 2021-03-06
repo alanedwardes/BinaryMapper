@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7502EAE7-A485-4AEA-9949-17731ECFE183}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryMapper.Windows.Executable", "src\BinaryMapper.Windows.Executable\BinaryMapper.Windows.Executable.csproj", "{C2FC24D8-2BBB-49DA-8B09-F0DCC8228C6F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryMapper.Tests", "tests\BinaryMapper.Tests\BinaryMapper.Tests.csproj", "{97A526CA-F3D1-4AB0-A65B-F41B84EC9B4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documentation", "Documentation\Documentation.csproj", "{1754E168-3F1A-4FD2-9AAD-0C580FDECF1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{97A526CA-F3D1-4AB0-A65B-F41B84EC9B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97A526CA-F3D1-4AB0-A65B-F41B84EC9B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97A526CA-F3D1-4AB0-A65B-F41B84EC9B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1754E168-3F1A-4FD2-9AAD-0C580FDECF1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1754E168-3F1A-4FD2-9AAD-0C580FDECF1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1754E168-3F1A-4FD2-9AAD-0C580FDECF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1754E168-3F1A-4FD2-9AAD-0C580FDECF1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
