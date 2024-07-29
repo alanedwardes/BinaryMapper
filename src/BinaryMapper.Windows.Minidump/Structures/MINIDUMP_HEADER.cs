@@ -30,11 +30,13 @@ namespace BinaryMapper.Windows.Minidump.Structures
         /// <summary>
         /// The number of streams in the minidump directory.
         /// </summary>
+        [FixupAttribute]
         public ULONG32 NumberOfStreams;
         /// <summary>
         /// The base RVA of the minidump directory. The directory is an array of
         /// <see cref="MINIDUMP_DIRECTORY"/> structures.
         /// </summary>
+        [FixupAttribute]
         public RVA StreamDirectoryRva;
         /// <summary>
         /// The checksum for the minidump file. This member can be zero.
@@ -53,6 +55,7 @@ namespace BinaryMapper.Windows.Minidump.Structures
         public ushort VersionMarshaled => Version.LowWord();
     }
 
+    [Flags]
     public enum MINIDUMP_TYPE : ULONG64
     {
         MiniDumpNormal = 0x00000000,
