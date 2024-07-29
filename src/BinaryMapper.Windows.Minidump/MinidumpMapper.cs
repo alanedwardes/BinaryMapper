@@ -44,33 +44,8 @@ namespace BinaryMapper.Windows.Minidump
                         // Fill referenced data
                         foreach (var minidumpThread in minidump.ThreadListStream.Threads)
                         {
-                            if (minidumpThread.ThreadContext.DataSize != 0)
-                            {
-                                var descr = minidumpThread.ThreadContext;
-                                stream.Position = descr.Rva;
-                                var buffer = new byte[descr.DataSize];
-                                stream.Read(buffer, 0, buffer.Length);
-                                minidumpThread.ThreadContext = new MINIDUMP_LOCATION_DESCRIPTOR_WITH_DATA()
-                                {
-                                    Rva = descr.Rva,
-                                    DataSize = descr.DataSize,
-                                    MemoryData = buffer
-                                };
-                            }
-
-                            if (minidumpThread.Stack.Memory.DataSize != 0)
-                            {
-                                var descr = minidumpThread.Stack.Memory;
-                                stream.Position = descr.Rva;
-                                var buffer = new byte[descr.DataSize];
-                                stream.Read(buffer, 0, buffer.Length);
-                                minidumpThread.Stack.Memory = new MINIDUMP_LOCATION_DESCRIPTOR_WITH_DATA()
-                                {
-                                    Rva = descr.Rva,
-                                    DataSize = descr.DataSize,
-                                    MemoryData = buffer
-                                };
-                            }
+                            minidumpThread.ThreadContext = GetDataFromLocation(stream, minidumpThread.ThreadContext);
+                            minidumpThread.Stack.Memory = GetDataFromLocation(stream, minidumpThread.Stack.Memory);
                         }
                         break;
                     case MINIDUMP_STREAM_TYPE.ModuleListStream:
@@ -88,37 +63,13 @@ namespace BinaryMapper.Windows.Minidump
                         // Fill referenced data
                         foreach (var memRange in minidump.MemoryListStream.MemoryRanges)
                         {
-                            if (memRange.Memory.DataSize != 0)
-                            {
-                                var descr = memRange.Memory;
-                                stream.Position = descr.Rva;
-                                var buffer = new byte[descr.DataSize];
-                                stream.Read(buffer, 0, buffer.Length);
-                                memRange.Memory = new MINIDUMP_LOCATION_DESCRIPTOR_WITH_DATA()
-                                {
-                                    Rva = descr.Rva,
-                                    DataSize = descr.DataSize,
-                                    MemoryData = buffer
-                                };
-                            }
+                            memRange.Memory = GetDataFromLocation(stream, memRange.Memory);
                         }
 
                         break;
                     case MINIDUMP_STREAM_TYPE.ExceptionStream:
                         minidump.ExceptionStream = _streamBinaryMapper.ReadObject<MINIDUMP_EXCEPTION_STREAM>(stream);
-                        if (minidump.ExceptionStream.ThreadContext.DataSize != 0)
-                        {
-                            var descr = minidump.ExceptionStream.ThreadContext;
-                            stream.Position = descr.Rva;
-                            var buffer = new byte[descr.DataSize];
-                            stream.Read(buffer, 0, buffer.Length);
-                            minidump.ExceptionStream.ThreadContext = new MINIDUMP_LOCATION_DESCRIPTOR_WITH_DATA()
-                            {
-                                Rva = descr.Rva,
-                                DataSize = descr.DataSize,
-                                MemoryData = buffer
-                            };
-                        }
+                        minidump.ExceptionStream.ThreadContext = GetDataFromLocation(stream, minidump.ExceptionStream.ThreadContext);
                         break;
                     case MINIDUMP_STREAM_TYPE.SystemInfoStream:
                         minidump.SystemInfoStream = _streamBinaryMapper.ReadObject<MINIDUMP_SYSTEM_INFO_STREAM>(stream);
@@ -275,6 +226,37 @@ namespace BinaryMapper.Windows.Minidump
             });
         }
 
+        public MINIDUMP_LOCATION_DESCRIPTOR_WITH_DATA GetDataFromLocation(Stream stream, MINIDUMP_LOCATION_DESCRIPTOR location)
+        {
+
+
+            if (location.DataSize != 0)
+            {
+                var oldPos = stream.Position;
+
+                stream.Position = location.Rva;
+                var buffer = new byte[location.DataSize];
+                stream.Read(buffer, 0, buffer.Length);
+
+                stream.Position = oldPos;
+
+                return new MINIDUMP_LOCATION_DESCRIPTOR_WITH_DATA()
+                {
+                    Rva = location.Rva,
+                    DataSize = location.DataSize,
+                    MemoryData = buffer
+                };
+            }
+
+            return new MINIDUMP_LOCATION_DESCRIPTOR_WITH_DATA()
+            {
+                Rva = location.Rva,
+                DataSize = location.DataSize,
+                MemoryData = Array.Empty<byte>()
+            };
+        }
+
+
         public void WriteMinidump(Stream stream, Minidump dump)
         {
             //#TODO clear the mapper, otherwise cannot call WriteMinidump multiple times with same mapper because it keeps map of RVA's
@@ -292,9 +274,19 @@ namespace BinaryMapper.Windows.Minidump
             // It is quite annoying, but the directory really needs to be at the top. (WinDbg will refuse to read RVA's when they are before the directory)
             List<MINIDUMP_DIRECTORY> directory = new List<MINIDUMP_DIRECTORY>();
             // We need to write the correct number of elements. Currently its just placeholders, we will write it again properly later
-            for (int i = 0; i < 5; i++)
-                directory.Add(new MINIDUMP_DIRECTORY(){Location = new MINIDUMP_LOCATION_DESCRIPTOR()});
-
+            {
+                var dummyDirectory = new MINIDUMP_DIRECTORY() {Location = new MINIDUMP_LOCATION_DESCRIPTOR()};
+                if (dump.ThreadListStream != null)
+                    directory.Add(dummyDirectory);
+                if (dump.ExceptionStream != null)
+                    directory.Add(dummyDirectory);
+                if (dump.SystemInfoStream != null)
+                    directory.Add(dummyDirectory);
+                if (dump.MemoryListStream != null)
+                    directory.Add(dummyDirectory);
+                if (dump.ModuleListStream != null)
+                    directory.Add(dummyDirectory);
+            }
             dump.Header.StreamDirectoryRva = (uint)stream.Position;
             dump.Header.NumberOfStreams = (uint)directory.Count;
             _streamBinaryMapper.WriteArray(stream, dump.Header.NumberOfStreams, typeof(MINIDUMP_DIRECTORY), directory.ToArray());
@@ -307,6 +299,7 @@ namespace BinaryMapper.Windows.Minidump
 
             // Write all streams
             {
+                if (dump.ThreadListStream != null)
                 {
                     // Write referenced memory RVA's
                     foreach (var minidumpThread in dump.ThreadListStream.Threads)
@@ -334,28 +327,17 @@ namespace BinaryMapper.Windows.Minidump
                     WriteDirectoryObject(stream, directory, dump.ThreadListStream, MINIDUMP_STREAM_TYPE.ThreadListStream);
                 }
                 
-
                 // Not enabled because I don't know the sizes, and my test dumps didn't have this.
                 //if (dump.ThreadInfoListStream != null)
                 //{
                 //    var writePos = stream.Position;
                 //
-                //
                 //    dump.ThreadInfoListStream.SizeOfHeader = 5; //#TODO don't hardcode? Or atleast not magic numbers
                 //    dump.ThreadInfoListStream.SizeOfEntry = 5;
-                //    _streamBinaryMapper.WriteObject(stream, typeof(MINIDUMP_THREAD_INFO_LIST_STREAM), dump.ThreadInfoListStream);
-                //
-                //    directory.Add(new MINIDUMP_DIRECTORY
-                //    {
-                //        StreamType = MINIDUMP_STREAM_TYPE.ThreadInfoListStream,
-                //        Location = new MINIDUMP_LOCATION_DESCRIPTOR
-                //        {
-                //            Rva = (uint)writePos,
-                //            DataSize = (uint)(stream.Position - writePos)
-                //        }
-                //    });
+                //    WriteDirectoryObject(stream, directory, dump.ThreadInfoListStream, MINIDUMP_STREAM_TYPE.ThreadInfoListStream);
                 //}
 
+                if (dump.ExceptionStream != null)
                 {
                     var writePos = stream.Position;
                     if (dump.ExceptionStream.ThreadContext is MINIDUMP_LOCATION_DESCRIPTOR_WITH_DATA data)
@@ -368,7 +350,7 @@ namespace BinaryMapper.Windows.Minidump
                     WriteDirectoryObject(stream, directory, dump.ExceptionStream, MINIDUMP_STREAM_TYPE.ExceptionStream);
                 }
                 
-
+                if (dump.SystemInfoStream != null) // This actually is NOT optional, WinDbg will refuse the dump if this is missing
                 {
                     // We need to write the name first and fix up RVA
                     {
@@ -383,6 +365,7 @@ namespace BinaryMapper.Windows.Minidump
                     WriteDirectoryObject(stream, directory, dump.SystemInfoStream, MINIDUMP_STREAM_TYPE.SystemInfoStream);
                 }
 
+                if (dump.MemoryListStream != null)
                 {
                     // Write data first, and set the correct RVA
                     foreach (var memDescriptor in dump.MemoryListStream.MemoryRanges)
@@ -399,6 +382,7 @@ namespace BinaryMapper.Windows.Minidump
                     WriteDirectoryObject(stream, directory, dump.MemoryListStream, MINIDUMP_STREAM_TYPE.MemoryListStream);
                 }
 
+                if (dump.ModuleListStream != null)
                 {
                     // We need to write the names first and fix up RVA
                     foreach (var module in dump.ModuleListStream.Modules)
