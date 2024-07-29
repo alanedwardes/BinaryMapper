@@ -15,7 +15,7 @@ namespace BinaryMapper.Windows.Minidump.Structures
         public ULONG64 ExceptionAddress;
         public ULONG32 NumberParameters;
         public ULONG32 __unusedAlignment;
-        [ArraySize(nameof(NumberParameters))]
+        [ArraySize(15)]
         public ULONG64[] ExceptionInformation;
     }
 
