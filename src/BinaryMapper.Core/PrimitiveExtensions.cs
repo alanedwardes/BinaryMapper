@@ -119,5 +119,61 @@ namespace BinaryMapper.Core
                 throw new NotImplementedException();
             }
         }
+
+        public static byte[] ObjectToBytes(this Type type, object o)
+        {
+            if (type == typeof(SByte))
+            {
+                return new byte[] { (byte)o };
+            }
+            else if (type == typeof(Byte))
+            {
+                return new byte[] { (byte)o };
+            }
+            else if (type == typeof(Int16))
+            {
+                return BitConverter.GetBytes((Int16)o);
+            }
+            else if (type == typeof(UInt16))
+            {
+                return BitConverter.GetBytes((UInt16)o);
+            }
+            else if (type == typeof(Int32))
+            {
+                return BitConverter.GetBytes((Int32)o);
+            }
+            else if (type == typeof(UInt32))
+            {
+                return BitConverter.GetBytes((UInt32)o);
+            }
+            else if (type == typeof(Int64))
+            {
+                return BitConverter.GetBytes((Int64)o);
+            }
+            else if (type == typeof(UInt64))
+            {
+                return BitConverter.GetBytes((UInt64)o);
+            }
+            else if (type == typeof(Char))
+            {
+                return BitConverter.GetBytes((Char)o);
+            }
+            else if (type == typeof(Single))
+            {
+                return BitConverter.GetBytes((Single)o);
+            }
+            else if (type == typeof(Double))
+            {
+                return BitConverter.GetBytes((Double)o);
+            }
+            else if (type == typeof(Boolean))
+            {
+                return BitConverter.GetBytes((Boolean)o);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

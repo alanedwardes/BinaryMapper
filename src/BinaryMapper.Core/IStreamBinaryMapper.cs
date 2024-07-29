@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace BinaryMapper.Core
@@ -11,5 +12,9 @@ namespace BinaryMapper.Core
         TObject ReadObject<TObject>(Stream stream);
         object ReadValue(Stream stream, Type type);
         TValue ReadValue<TValue>(Stream stream);
+
+        void WriteArray(Stream stream, uint length, Type type, Array objects);
+        void WriteValue(Stream stream, Type type, object value);
+        List<(Type, long)> WriteObject(Stream stream, Type type, object structure);
     }
 }

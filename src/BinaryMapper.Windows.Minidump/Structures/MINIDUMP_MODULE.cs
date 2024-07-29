@@ -63,6 +63,7 @@ namespace BinaryMapper.Windows.Minidump.Structures
         /// <summary>
         /// The name of the module
         /// </summary>
-        public string Name { get; internal set;}
+        [NonSerialized]
+        public string Name;
     }
 }
