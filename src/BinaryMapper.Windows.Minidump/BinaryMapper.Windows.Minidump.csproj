@@ -10,6 +10,7 @@
     <PackageTags>parsing;binary;reading;executable;dos;pe</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/alanedwardes/BinaryMapper/master/logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/alanedwardes/BinaryMapper</PackageProjectUrl>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
